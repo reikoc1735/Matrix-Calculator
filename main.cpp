@@ -1,7 +1,24 @@
 #include <cmath>
 #include <iostream>
+#include <cassert>
 
 using namespace std;
+
+class Matrix{
+    public:
+    Matrix(int r, int c) : row(r), col(c){}
+
+    double* at(int r, int c) {
+        assert(0 <= c && c <= col);
+        assert(0 <= r && r <= row);
+        return &(m[r][c]);
+    }
+
+    private:
+    int row;
+    int col;
+    double m[100][100];
+};
 
 class PageRank{
     public:
@@ -11,7 +28,7 @@ class PageRank{
     //create G matrix
     //find dominant eigenvector
     private:
-    //matrix represented by arr[][] <-lemme know if u would like to represent it differently
+    
 };
 
 int main(int argc, char *argv[]){
