@@ -125,9 +125,8 @@ Matrix power_method(Matrix m, Matrix v){
     Matrix prev = matrix_multiply(m, v);
     Matrix current = matrix_multiply(m, prev);
     while(prev != current){
-        Matrix temp = prev;
         prev = current;
-        current = matrix_multiply(m, temp);
+        current = matrix_multiply(m, current);
     }
 
     return current;
