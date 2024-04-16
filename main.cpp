@@ -33,8 +33,7 @@ class Matrix{
         output << row << " " << col << endl;
         for(size_t r = 0; r < row; r++){
             for(size_t c = 0; c < col; c++){
-                //int temp = (m[r][c] * 1000.0);
-                //output << temp / 1000.0 << " ";
+                //double value = round(m[r][c] * 1000.0) / 1000.0;
                 output << m[r][c] << " ";
             }
             output << endl;
@@ -57,8 +56,8 @@ class Matrix{
         if(rhs.get_col() != col) {return false;}
         for(size_t r = 0; r < row; r++){
             for(size_t c = 0; c < col; c++){
-                double value1 = round(*(rhs.at(r, c)) * 1000.0) / 1000.0;
-                double value2 = round(m[r][c] * 1000.0) / 1000.0;
+                double value1 = round(*(rhs.at(r, c)) * 100.0) / 100.0;
+                double value2 = round(m[r][c] * 100.0) / 100.0;
                 if(value1 != value2) {return false;}
             }
         }
@@ -121,19 +120,20 @@ Matrix add_matrix(Matrix rhs, Matrix lhs){
 }
 
 Matrix power_method(Matrix m, Matrix v){
-    cout << "Note up to 3 decimal precision" << endl;
+    cout << "Note up to 2 decimal precision" << endl;
     Matrix prev = matrix_multiply(m, v);
     Matrix current = matrix_multiply(m, prev);
     while(prev != current){
+        Matrix temp = current;
         prev = current;
-        current = matrix_multiply(m, current);
+        current = matrix_multiply(m, temp);
     }
 
     return current;
 }
 
 int main(int argc, char *argv[]){
-    cout.precision(3);
+    cout.precision(2);
     cout << "Give Matrix file" << endl;
     string filename;
     cin >> filename;
